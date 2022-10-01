@@ -1,0 +1,30 @@
+{
+    "name": "jon5477/laravel-hcaptcha",
+    "description": "hCaptcha package for Laravel framework",
+    "type": "library",
+    "license": "LGPL-3.0-or-later",
+    "autoload": {
+        "psr-4": {
+            "jon5477\\hCaptcha\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jon Huang",
+            "email": "jon5477@users.noreply.github.com"
+        }
+    ],
+    "require": {
+        "php": "^7.3|^8.0",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "illuminate/support": "^8.0|^9.0"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.2",
+        "friendsofphp/php-cs-fixer": "^3.11",
+        "symfony/var-dumper": "^6.1",
+        "phpunit/phpunit": "^9.5",
+        "phpunit/php-code-coverage": "^9.2"
+    }
+}
