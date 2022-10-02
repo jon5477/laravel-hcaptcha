@@ -28,22 +28,22 @@ class HCaptchaBuilder
     /**
      * @var int
      */
-    const DEFAULT_CURL_TIMEOUT = 10;
+    public const DEFAULT_CURL_TIMEOUT = 10;
 
     /**
      * @var string
      */
-    const DEFAULT_ONLOAD_JS_FUNCTION = 'laravelHCaptchaOnloadCallback';
+    public const DEFAULT_ONLOAD_JS_FUNCTION = 'laravelHCaptchaOnloadCallback';
 
     /**
      * @var string
      */
-    const DEFAULT_HCAPTCHA_RULE_NAME = 'hcaptcha';
+    public const DEFAULT_HCAPTCHA_RULE_NAME = 'hcaptcha';
 
     /**
      * @var string
      */
-    const DEFAULT_HCAPTCHA_FIELD_NAME = 'h-captcha-response';
+    public const DEFAULT_HCAPTCHA_FIELD_NAME = 'h-captcha-response';
 
     /**
      * @var string

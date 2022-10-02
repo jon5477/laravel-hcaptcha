@@ -20,7 +20,7 @@ class HCaptchaServiceProvider extends ServiceProvider implements DeferrableProvi
     {
         $this->addValidationRule();
         $this->publishes([
-            __DIR__ . '/../config/hcaptcha.php' => $this->app->configPath('hcaptcha.php'),
+            __DIR__ . '/../../config/hcaptcha.php' => $this->app->configPath('hcaptcha.php'),
         ], 'config');
     }
 
@@ -31,7 +31,7 @@ class HCaptchaServiceProvider extends ServiceProvider implements DeferrableProvi
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/hcaptcha.php', 'hcaptcha');
+        $this->mergeConfigFrom(__DIR__ . '/../../config/hcaptcha.php', 'hcaptcha');
         $this->registerHCaptchaBuilder();
     }
 
