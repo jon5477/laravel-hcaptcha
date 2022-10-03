@@ -6,6 +6,10 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Config;
 use jon5477\hCaptcha\Exceptions\InvalidConfigurationException;
 
+/**
+ * Main hCaptcha class for generating the HTML tags needed for hCaptcha
+ * and validation logic for CAPTCHA verification.
+ */
 class HCaptchaBuilder
 {
     /**
@@ -41,11 +45,7 @@ class HCaptchaBuilder
     public const DEFAULT_HCAPTCHA_RULE_NAME = 'hcaptcha';
 
     /**
-     * @var string
-     */
-    public const DEFAULT_HCAPTCHA_FIELD_NAME = 'h-captcha-response';
-
-    /**
+     * Site key for hCaptcha.
      * @var string
      */
     private $siteKey;
