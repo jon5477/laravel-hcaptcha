@@ -44,7 +44,7 @@ class HCaptchaServiceProvider extends ServiceProvider implements DeferrableProvi
         if (!Config::has('hcaptcha.empty_message')) {
             $message = Lang::get(Config::get('hcaptcha.error_message_key'));
         }
-        Validator::extendImplicit('hcaptcha', function ($attribute, $value) {
+        Validator::extendImplicit(HCaptchaBuilder::DEFAULT_HCAPTCHA_RULE_NAME, function ($attribute, $value) {
             return $this->app->make(HCaptchaBuilder::class)->validate($value);
         }, $message);
     }
