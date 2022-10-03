@@ -63,8 +63,8 @@ class HCaptchaBuilder
      */
     private static function filterAttributes(?array $attributes = []): array
     {
-        return array_filter($attributes, function ($k) {
-            return in_array($k, self::$allowed_data_attributes);
+        return array_filter($attributes, function ($key) {
+            return in_array($key, self::$allowed_data_attributes);
         }, ARRAY_FILTER_USE_KEY);
     }
 
@@ -203,7 +203,7 @@ class HCaptchaBuilder
         curl_setopt($curl, CURLOPT_TIMEOUT, $this->getCurlTimeout());
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
         $curl_resp = curl_exec($curl);
-        if (empty($curl_resp)) {
+        if (!$curl_resp) {
             return false;
         }
         $resp_arr = json_decode(trim($curl_resp), true);

@@ -16,7 +16,7 @@ class HCaptchaServiceProvider extends ServiceProvider implements DeferrableProvi
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         $this->addValidationRule();
         $this->publishes([
@@ -29,7 +29,7 @@ class HCaptchaServiceProvider extends ServiceProvider implements DeferrableProvi
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->mergeConfigFrom(__DIR__ . '/../../config/hcaptcha.php', 'hcaptcha');
         $this->registerHCaptchaBuilder();
@@ -38,7 +38,7 @@ class HCaptchaServiceProvider extends ServiceProvider implements DeferrableProvi
     /**
      * @return void
      */
-    private function addValidationRule()
+    private function addValidationRule(): void
     {
         $message = null;
         if (!Config::has('hcaptcha.empty_message')) {
@@ -52,7 +52,7 @@ class HCaptchaServiceProvider extends ServiceProvider implements DeferrableProvi
     /**
      * @return void
      */
-    private function registerHCaptchaBuilder()
+    private function registerHCaptchaBuilder(): void
     {
         $this->app->singleton(HCaptchaBuilder::class, function () {
             return new HCaptchaBuilder(Config::get('hcaptcha.api_site_key'), Config::get('hcaptcha.api_secret_key'));

@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Facade;
 use jon5477\hCaptcha\Builders\HCaptchaBuilder;
 
 /**
- * @method static string testHtmlScriptTagJsApi(?array $config = [])
+ * @method static string htmlScriptTagJsApi(?array $config = [])
  * @method static string htmlFormSnippet(?array $attributes = [])
  *
  * @see \jon5477\hCaptcha\Builders\HCaptchaBuilder
