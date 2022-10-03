@@ -14,7 +14,7 @@ return [
     | The unique site key assigned by hCaptcha.
     */
 
-    'api_site_key' => env('RECAPTCHA_SITE_KEY', ''),
+    'api_site_key' => env('HCAPTCHA_SITE_KEY', ''),
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return [
     | Set this value to the language key of the message to display.
     */
 
-    'error_message_key' => 'validation.recaptcha',
+    'error_message_key' => 'validation.hcaptcha',
 
     /*
     |--------------------------------------------------------------------------
