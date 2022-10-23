@@ -4,7 +4,9 @@ namespace jon5477\hCaptcha\Builders;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Request;
 use jon5477\hCaptcha\Exceptions\InvalidConfigurationException;
+use Symfony\Component\HttpFoundation\IpUtils;
 
 /**
  * Main hCaptcha class for generating the HTML tags needed for hCaptcha
@@ -44,6 +46,11 @@ class HCaptchaBuilder
      */
     public const DEFAULT_HCAPTCHA_RULE_NAME = 'hcaptcha';
 
+    /**
+     * Whether is true the hCAPTCHA is inactive
+     * @var bool
+     */
+    private $skip_by_ip = false;
     /**
      * Site key for hCaptcha.
      * @var string
@@ -87,6 +94,7 @@ class HCaptchaBuilder
     {
         $this->siteKey = $siteKey;
         $this->secretKey = $secretKey;
+        $this->skip_by_ip = $this->skipByIp();
     }
 
     /**
@@ -95,6 +103,30 @@ class HCaptchaBuilder
     public function getCurlTimeout(): int
     {
         return Config::get('hcaptcha.curl_timeout', self::DEFAULT_CURL_TIMEOUT);
+    }
+
+    /**
+     * @return array
+     */
+    public function getIpWhitelist(): array
+    {
+        $whitelist = Config::get('hcaptcha.skip_ip', []);
+        if (!is_array($whitelist)) {
+            $whitelist = explode(',', $whitelist);
+        }
+        return array_map(function ($item) {
+            return trim($item);
+        }, $whitelist);
+    }
+
+    /**
+     * Checks whether the user IP address is among IPs "to be skipped"
+     *
+     * @return boolean
+     */
+    public function skipByIp(): bool
+    {
+        return IpUtils::checkIp(Request::ip(), $this->getIpWhitelist());
     }
 
     /**
@@ -191,6 +223,9 @@ class HCaptchaBuilder
      */
     public function validate(string $response): bool
     {
+        if ($this->skip_by_ip) {
+            return true;
+        }
         $params = http_build_query([
             'secret' => $this->secretKey,
             'response' => $response,

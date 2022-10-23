@@ -2,6 +2,7 @@
 
 namespace Tests\Builders;
 
+use Illuminate\Support\Facades\Config;
 use jon5477\hCaptcha\Builders\HCaptchaBuilder;
 use jon5477\hCaptcha\Exceptions\InvalidConfigurationException;
 use Tests\TestCase;
@@ -55,6 +56,15 @@ class HCaptchaBuilderTest extends TestCase
         // Test enterprise account (bot detected)
         $builder = new HCaptchaBuilder('30000000-ffff-ffff-ffff-000000000003', '0x0000000000000000000000000000000000000000');
         $valid = $builder->validate('30000000-aaaa-bbbb-cccc-000000000003');
+        $this->assertTrue($valid);
+    }
+
+    public function testValidateSkipped()
+    {
+        // Test skipped IPs
+        Config::set('hcaptcha.skip_ip', ['127.0.0.1']);
+        $builder = new HCaptchaBuilder('', '');
+        $valid = $builder->validate('');
         $this->assertTrue($valid);
     }
 }
